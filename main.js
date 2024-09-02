@@ -11,7 +11,7 @@
 //   alertPlaceholder.append(wrapper)
 // }
 
-const backend_address = "https://147.185.221.22:32385/api";
+const backend_address = "https://orange-term-76e7.electroboy404notfound.workers.dev/api";
 var public_key = "";
 
 const textarea = document.getElementById("content");
