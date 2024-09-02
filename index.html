@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/travist/jsencrypt@master/bin/jsencrypt.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="container-fluid p-5 bg-secondary text-white text-center">
+            <h1>Your Postcard</h1>
+            <h4>Your Postcard is our priority</h4>
+        </div>
+
+        <div class="container mt-5">
+            <div class="row">
+                <h2>Sender info</h2>
+                <div class="col-sm-6">
+                    <h3>Name</h3>
+                    <input type="text" id="sender_name_input">
+                </div>
+                <div class="col-sm-6">
+                    <h3>Email (or) phone number</h3>
+                    <input type="text" id="sender_email_phno_input">
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <h2>Receiver info</h4>
+                <div class="col-sm-3">
+                    <h3>Name</h3>
+                    <input type="text" id="receiver_name_input">
+                </div>
+                <div class="col-sm-3">
+                    <h3>Building name</h3>
+                    <input type="text" id="receiver_building_name_input">
+                </div>
+                <div class="col-sm-3">
+                    <h3>Flat number</h3>
+                    <input type="text" id="receiver_flat_number_input">
+                </div>
+                <div class="col-sm-3">
+                    <h3>Door number (optional)</h3>
+                    <input type="text" id="receiver_door_number_input">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Street</h3>
+                    <input type="text" id="receiver_street_input">
+                </div>
+                <div class="col-sm-3">
+                    <h3>State</h3>
+                    <select name="states" id="states">
+                        <option value="notselected">--select a state--</option>
+                        <option value="andhrapradesh">Andhra Pradesh</option>
+                        <option value="arunachalpradesh">Arunachal Pradesh</option>
+                        <option value="assam">Assam</option>
+                        <option value="bihar">Bihar</option>
+                        <option value="chhattisgarh">Chhattisgarh</option>
+                        <option value="goa">Goa</option>
+                        <option value="gujarat">Gujarat</option>
+                        <option value="haryana">Haryana</option>
+                        <option value="himachalpradesh">Himachal Pradesh</option>
+                        <option value="jharkhand">Jharkhand</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="kerala">Kerala</option>
+                        <option value="madhyapradesh">Madhya Pradesh</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="manipur">Manipur</option>
+                        <option value="meghalaya">Meghalaya</option>
+                        <option value="mizoram">Mizoram</option>
+                        <option value="nagaland">Nagaland</option>
+                        <option value="odisha">Odisha</option>
+                        <option value="punjab">Punjab</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="sikkim">Sikkim</option>
+                        <option value="tamilnadu">Tamil Nadu</option>
+                        <option value="telangana">Telangana</option>
+                        <option value="tripura">Tripura</option>
+                        <option value="uttarpradesh">Uttar Pradesh</option>
+                        <option value="uttarakhand">Uttarakhand</option>
+                        <option value="westbengal">West Bengal</option>
+                        <option value="andamanandnicobar">Andaman and Nicobar Islands</option>
+                        <option value="chandigarh">Chandigarh</option>
+                        <!-- <option value="dadra">Dadra and Nagar Haveli and Daman and Diu</option> -->
+                        <option value="delhi">Delhi</option>
+                        <option value="jammuandkashmir">Jammu and Kashmir</option>
+                        <option value="ladakh">Ladakh</option>
+                        <option value="lakshadweep">Lakshadweep</option>
+                        <option value="puducherry">Puducherry</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <h3>Pincode</h3>
+                    <input type="text" id="receiver_pincode_input">
+                </div>
+                <div class="col-sm-3">
+                    <br>
+                    <p>Please verify that all the above information is correct or the yellow postcard won't be received!</p>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <h2>Content to be sent</h2>
+                <textarea class="col-sm-12" rows="7" id="content" name="content" maxlength="1000">Hello!</textarea>
+                <div id="progress">
+                    <div id="progress-bar"></div>
+                    <p id="remaining-chars"></p>
+                </div>                  
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>Please make sure all the above fields have been filled correctly! None of the above can be changed after submission!</p>
+                </div>
+                <div class="col-sm-6">
+                    <button type="button" class="btn btn-danger" id="submit_button" autocomplete="off">Post!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Please Wait...</h1>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                    </div>
+                    <div class="modal-body" id="post_modal_body">
+                    </div>
+                    <div class="modal-footer" id="post_modal_footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="onloadagreemodal" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Website Rules</h1>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                    </div>
+                    <div class="modal-body">
+                        <h6>The following are the Website Rules:</h6>
+                        <ul>
+                            <li>Input valid address and details. Failure to do so will result in the postcard not going through</li>
+                            <li>Do not spam, if you haven't received a email/sms to your phone number with a confirmation message within 5 minutes, contact us at electroboy404notfound@gmail.com</li>
+                            <li>We may reject a postcard and inform you the same if the receiver address is invalid</li>
+                            <li>Only yellow postcards are going to be currently sent only accross India</li>
+                            <li>Sender name can be anything, does not have to be real name</li>
+                            <li>Your postcard will be posted the following day from the date of submission if submitted before 7PM IST</li>
+                            <li>Please prefix your phone number with the country code, e.g. An Indian number "1234567890" becomes "+91 1234567890".</li>
+                            <li>If possible, provide email and phone number in the following format: "example@example.org / +91 1234567890"</li>
+                        </ul>
+
+                        <h7>By clicking agree, you will be agreeing to the above rules</h7>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary">[5] Agree</button>
+                        <button type="button" class="btn btn-danger" onclick="rl_declined()">Decline</button>
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>
