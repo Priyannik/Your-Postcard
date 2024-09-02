@@ -11,7 +11,7 @@
 //   alertPlaceholder.append(wrapper)
 // }
 
-const backend_address = "localhost:1233";
+const backend_address = "147.185.221.19:18286";
 var public_key = "";
 
 const textarea = document.getElementById("content");
