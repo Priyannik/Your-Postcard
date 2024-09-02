@@ -11,7 +11,7 @@
 //   alertPlaceholder.append(wrapper)
 // }
 
-const backend_address = "147.185.221.19:18286";
+const backend_address = "https://147.185.221.22:32385/api";
 var public_key = "";
 
 const textarea = document.getElementById("content");
@@ -59,7 +59,7 @@ $("#submit_button")[0].onclick = function() {
         `<h6>Setting up encryption... </h6>` +
         `<div class="loader"></div>`;
 
-    $.post("http://" + backend_address + "/encryption", function(data, status) {
+    $.post(backend_address + "/encryption", function(data, status) {
         public_key = data;
 
         var encrypt = new JSEncrypt();
@@ -70,7 +70,7 @@ $("#submit_button")[0].onclick = function() {
 
         console.log(encrypted);
 
-        $.post("http://" + backend_address + "/enccheck", encrypted, function(data, status) {
+        $.post(backend_address + "/enccheck", encrypted, function(data, status) {
             if(status != "success") {
                 console.log(data);
                 console.log(status);
@@ -99,7 +99,7 @@ $("#submit_button")[0].onclick = function() {
             }
             encrypted += "\n";
             console.log(encrypted);
-            $.post("http://" + backend_address + "/senddata", encrypted, function(data, status) {
+            $.post(backend_address + "/senddata", encrypted, function(data, status) {
                 setTimeout(function() {
                     document.querySelector('#staticBackdrop .modal-body').innerHTML =
                         `<h6>Validating Address... NOT CHECKED</h6>` +
