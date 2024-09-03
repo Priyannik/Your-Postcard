@@ -88,7 +88,7 @@ $("#submit_button")[0].onclick = function() {
                 `<h6>Sending data... </h6>` +
                 `<div class="loader"></div>`;
 
-            data = `{"sender": { "name": "` + $("#sender_name_input").val() + `", "contact": "` + $("#sender_email_phno_input").val() + `" }, "receiver": { "name": "` + $("#receiver_name_input").val() + `", "building": "` + $("#receiver_building_name_input").val() + `", "flat_number": "` + $("#receiver_flat_number_input").val() + `", "door_number": "` + $("#receiver_door_number_input").val() + `", "street_name": "` + $("#receiver_street_input").val() + `", "state": "` + $("#states option:selected").text() + `", "pincode": "` + $("#receiver_pincode_input").val() + `" }, "content": "` + textarea.value.replace(/\n/g, '[newline]') + `"}`;
+            data = `{"sender": { "name": "` + $("#sender_name_input").val() + `", "contact": "` + $("#sender_email_phno_input").val() + `" }, "receiver": { "name": "` + $("#receiver_name_input").val() + `", "building": "` + $("#receiver_building_name_input").val() + `", "flat_number": "` + $("#receiver_flat_number_input").val() + `", "door_number": "` + $("#receiver_door_number_input").val() + `", "street_name": "` + $("#receiver_street_input").val() + `", "state": "` + $("#states option:selected").text() + `", "pincode": "` + $("#receiver_pincode_input").val() + `" }, "content": "` + textarea.value.replace(/\n/g, '[newline]').replace(/["]/g, "\\\"") + `"}`;
             console.log(data);
             var split_data = data.match(/.{1,127}/g);
             console.log(split_data);
