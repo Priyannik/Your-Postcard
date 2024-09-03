@@ -17,6 +17,15 @@ var public_key = "";
 const textarea = document.getElementById("content");
 const progressBar = document.getElementById("progress-bar");
 const remChars = document.getElementById("remaining-chars");
+const sender_name_input = document.getElementById("sender_name_input");
+const sender_email_phno_input = document.getElementById("sender_email_phno_input");
+const receiver_name_input = document.getElementById("receiver_name_input");
+const receiver_building_name_input = document.getElementById("receiver_building_name_input");
+const receiver_flat_number_input = document.getElementById("receiver_flat_number_input");
+const receiver_door_number_input = document.getElementById("receiver_door_number_input");
+const receiver_street_input = document.getElementById("receiver_street_input");
+const states = document.getElementById("states");
+const receiver_pincode_input = document.getElementById("receiver_pincode_input");
 
 textarea.value = "";
 
@@ -88,7 +97,23 @@ $("#submit_button")[0].onclick = function() {
                 `<h6>Sending data... </h6>` +
                 `<div class="loader"></div>`;
 
-            data = `{"sender": { "name": "` + $("#sender_name_input").val() + `", "contact": "` + $("#sender_email_phno_input").val() + `" }, "receiver": { "name": "` + $("#receiver_name_input").val() + `", "building": "` + $("#receiver_building_name_input").val() + `", "flat_number": "` + $("#receiver_flat_number_input").val() + `", "door_number": "` + $("#receiver_door_number_input").val() + `", "street_name": "` + $("#receiver_street_input").val() + `", "state": "` + $("#states option:selected").text() + `", "pincode": "` + $("#receiver_pincode_input").val() + `" }, "content": "` + textarea.value.replace(/\n/g, '[newline]').replace(/["]/g, "\\\"") + `"}`;
+            // data =  "content": "` +  + `"}`;
+            var data_json = {
+                sender: {
+                    name: sender_name_input.value,
+                    contact: sender_email_phno_input.value
+                }, receiver: {
+                    name: receiver_name_input.value,
+                    building: receiver_building_name_input.value,
+                    flat_number: receiver_flat_number_input.value,
+                    door_number: receiver_door_number_input.value,
+                    street_name: receiver_street_input.value,
+                    state: states.options[states.selectedIndex].text,
+                    pincode: receiver_pincode_input.value,
+                },
+                content: textarea.value.replace(/\n/g, '[newline]')
+            }
+            data = JSON.stringify(data_json);
             console.log(data);
             var split_data = data.match(/.{1,127}/g);
             console.log(split_data);
